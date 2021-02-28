@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
-const api = 'https://ih-beers-api2.herokuapp.com/beers';
 
-const AllBeers = () => {
-  const [beersList, setBeersList] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const beers = await axios(api);
-      setBeersList(beers.data);
-    };
-    fetchData();
-  }, []);
-  console.log('beersList', beersList);
-
-  if (!beersList) return <h3>Loading...</h3>;
+const AllBeers = (props) => {
+  if (!props.beersList) return <h3>Loading...</h3>;
   return (
     <div>
-      {beersList.map((beer) => {
+      {props.beersList.map((beer) => {
         return (
-          <div key={beer._id} style={{ width: '90vw', display: 'flex' }}>
+          <div
+            key={beer._id}
+            style={{ width: '90vw', display: 'flex', margin: '5% 0 5% 5%' }}
+          >
             <img
               src={beer.image_url}
               alt={beer.name}
@@ -35,7 +25,7 @@ const AllBeers = () => {
               }}
             >
               <Link to={`/beers/${beer._id}`}>
-                <h3>{beer.name}</h3>
+                <h2>{beer.name}</h2>
               </Link>
               <h4>{beer.tagline}</h4>
             </div>

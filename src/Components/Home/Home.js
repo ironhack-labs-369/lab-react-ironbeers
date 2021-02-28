@@ -16,7 +16,7 @@ const Home = () => {
         </section>
       </Link>
 
-      <Link to={'/beers/:beerId'}>
+      <Link to={'/beers/:randomId'}>
         <section
           style={{
             width: '100vw',
