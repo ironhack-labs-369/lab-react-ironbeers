@@ -95,6 +95,8 @@ const NewBeer = (props) => {
     props.setBeersList(...props.beersList, newBeer);
   };
   console.log('beersList from form comp', props.beersList);
+
+  // Make dynamic input tags for the form
   const formElementsArray = [];
   for (let key in controls) {
     formElementsArray.push({
@@ -103,8 +105,6 @@ const NewBeer = (props) => {
     });
   }
   let form = formElementsArray.map((formElement) => {
-    // console.log('formElement', formElement);
-
     return (
       <input
         key={formElement.id}

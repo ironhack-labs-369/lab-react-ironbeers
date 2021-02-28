@@ -4,15 +4,15 @@ const api = 'https://ih-beers-api2.herokuapp.com/beers';
 
 const SingleBeer = (props) => {
   const [singleBeer, setSingleBeer] = useState('');
-
+  const randomIndex = Math.floor(Math.random() * (props.beersList.length - 1));
   console.log('props.singleBeer ', props);
+  console.log('randomIndex ', randomIndex);
+  console.log('randomId ', props.beersList[randomIndex]._id);
 
   useEffect(() => {
     let id;
-
     if (props.isRandom) {
-      id =
-        props.beersList[Math.floor(Math.random() * (props.beersList - 1))].id;
+      id = props.beersList[randomIndex]._id;
     } else {
       id = props.match.params.id;
     }
@@ -34,6 +34,7 @@ const SingleBeer = (props) => {
       }
     };
     fetchData();
+    return;
   }, [props.match.params.id, props.beersList, props.isRandom]);
   console.log('beer', singleBeer);
 
