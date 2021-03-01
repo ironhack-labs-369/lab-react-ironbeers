@@ -26,7 +26,7 @@ const NewBeer = (props) => {
       placeholder: 'First brewed',
       value: '',
       validation: {
-        required: true,
+        required: false,
       },
     },
     attLevel: {
@@ -34,7 +34,7 @@ const NewBeer = (props) => {
       placeholder: 'Attenuation level',
       value: '',
       validation: {
-        required: true,
+        required: false,
       },
     },
     description: {
@@ -42,7 +42,7 @@ const NewBeer = (props) => {
       placeholder: 'Description',
       value: '',
       validation: {
-        required: true,
+        required: false,
       },
     },
     contrBy: {
@@ -50,7 +50,7 @@ const NewBeer = (props) => {
       placeholder: 'Contributed by',
       value: '',
       validation: {
-        required: true,
+        required: false,
       },
     },
   });
@@ -94,7 +94,7 @@ const NewBeer = (props) => {
     console.log('New beer added: ', newBeer);
     props.setBeersList(...props.beersList, newBeer);
   };
-  console.log('beersList from form comp', props.beersList);
+  console.log('beersList from Form', props.beersList);
 
   // Make dynamic input tags for the form
   const formElementsArray = [];

@@ -48,7 +48,12 @@ function App() {
             <SingleBeer {...props} beersList={beersList} isRandom={true} />
           )}
         />
-        <Route exact path="/beers/:id" component={SingleBeer} />
+        <Route
+          exact
+          path="/beers/:id"
+          component={SingleBeer}
+          isRandom={false}
+        />
       </Switch>
     </div>
   );

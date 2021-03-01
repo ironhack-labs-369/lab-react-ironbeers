@@ -4,38 +4,33 @@ const api = 'https://ih-beers-api2.herokuapp.com/beers';
 
 const SingleBeer = (props) => {
   const [singleBeer, setSingleBeer] = useState('');
+  const [effectRunning, setEffectRunning] = useState(true);
   const randomIndex = Math.floor(Math.random() * (props.beersList.length - 1));
+
   console.log('props.singleBeer ', props);
   console.log('randomIndex ', randomIndex);
   console.log('randomId ', props.beersList[randomIndex]._id);
 
+  let id;
+
+  if (props.isRandom && effectRunning) {
+    id = props.beersList[randomIndex]._id;
+  } else {
+    id = props.match.params.id;
+  }
+
   useEffect(() => {
-    let id;
-    if (props.isRandom) {
-      id = props.beersList[randomIndex]._id;
-    } else {
-      id = props.match.params.id;
-    }
-
-    // {
-    //       props.isRandom
-    //         ? (id =
-    //             props.beersList[Math.floor(Math.random() * (props.beersList - 1))]
-    //               .id)
-    //         : (id = props.match.params.id);
-    //     }
-
     const fetchData = async () => {
       try {
         const beer = await axios(`${api}/${id}`);
         setSingleBeer(beer.data);
+        setEffectRunning(false);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-    return;
-  }, [props.match.params.id, props.beersList, props.isRandom]);
+  }, [id]);
   console.log('beer', singleBeer);
 
   if (!singleBeer) return <h3>Loading...</h3>;
